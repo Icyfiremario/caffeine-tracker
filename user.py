@@ -14,6 +14,7 @@ class User:
 
         decay = math.pow(0.5, time_since_last_dose / 6)
         self.current_caffeine *= decay
+        self.last_dose_time = datetime.now().hour + (datetime.now().minute / 60)
         return
 
     def add_dose(self, mg: float):
