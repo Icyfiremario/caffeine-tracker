@@ -36,13 +36,19 @@ def main():
 
             if len(args) > 1:
                 user.add_dose(float(args[1]))
+                print(f"Adding dose of {args[1]} to user {user}.")
                 await message.channel.send(f"Adding dose of {args[1]} mg")
             else:
                 await message.channel.send("Please specify the amount of caffeine to add in milligrams")
 
         if message.content.startswith("!check"):
             user.check_caffeine()
+            print(f"User {user} has {user.check_caffeine()}mg of caffeine in their system.")
             await message.channel.send(f"Your current caffeine level is {user.check_caffeine()} mg")
+
+        if message.content.startswith("!reset"):
+            user.reset_dose()
+            await message.channel.send("Reset tracked dose to 0mg")
 
     client.run(BOT_KEY)
 
